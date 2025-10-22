@@ -1,0 +1,20 @@
+[package]
+name = "daoyi-cloud-salvo"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+[workspace]
+members = [".", "crates/libs/*", "crates/apps/*", "crates/apis/*"]
+# 指定Cargo的依赖解析器版本为3
+# resolver = "3" 表示使用Cargo的第三个主要版本解析器
+# 这会影响依赖解析和特性处理的行为
+# 通常用于确保不同项目间的依赖解析一致性
+resolver = "3"
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90.0"
+
+[workspace.dependencies]
+
+[dependencies]
