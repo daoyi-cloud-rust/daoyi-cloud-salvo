@@ -1,0 +1,7 @@
+[package]
+name = "daoyi-starter-biz-tenant"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
