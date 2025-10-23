@@ -1,5 +1,5 @@
 [package]
-name = "daoyi-module-system-api"
+name = "daoyi-module-infra-api"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
