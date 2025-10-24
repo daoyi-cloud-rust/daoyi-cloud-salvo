@@ -7,6 +7,9 @@ use salvo::{Listener, Router, Server};
 use tokio::signal;
 
 pub async fn start(router: Router) -> anyhow::Result<()> {
+    let router = Router::new()
+        .hoop(Logger::new())
+        .push(router);
     let c = conf::get().await;
     tracing::info!("log level: {}", c.server().log_level());
     let doc = OpenApi::new("salvo web api", "0.0.1").merge_router(&router);
