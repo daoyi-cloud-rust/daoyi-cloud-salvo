@@ -5,3 +5,11 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+salvo.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+
+daoyi-starter-web.workspace = true
+daoyi-common.workspace = true
+daoyi-starter-redis.workspace = true
+daoyi-starter-mybatis.workspace = true

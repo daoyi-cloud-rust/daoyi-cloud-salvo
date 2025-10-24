@@ -5,3 +5,7 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+anyhow.workspace = true
+salvo.workspace = true
+
+daoyi-common.workspace = true

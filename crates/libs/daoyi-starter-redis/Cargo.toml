@@ -5,3 +5,12 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+anyhow.workspace = true
+redis.workspace = true
+deadpool-redis.workspace = true
+serde.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+serde_json.workspace = true
+
+daoyi-common.workspace = true

@@ -7,4 +7,6 @@ rust-version.workspace = true
 [dependencies]
 tokio.workspace = true
 salvo.workspace = true
+anyhow.workspace = true
 daoyi-common.workspace = true
+daoyi-starter-app.workspace = true

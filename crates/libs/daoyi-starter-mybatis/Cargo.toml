@@ -5,3 +5,10 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+sea-orm.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+num_cpus.workspace = true
+tracing.workspace = true
+
+daoyi-common.workspace = true
