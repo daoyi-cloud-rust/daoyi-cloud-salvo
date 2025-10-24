@@ -8,5 +8,6 @@ rust-version.workspace = true
 anyhow.workspace = true
 salvo.workspace = true
 tracing.workspace = true
+tokio.workspace = true
 
 daoyi-common.workspace = true
