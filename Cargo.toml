@@ -16,7 +16,7 @@ edition = "2024"
 rust-version = "1.90.0"
 
 [workspace.dependencies]
-salvo = { version = "0.84.2", features = ["oapi", "logging"] }
+salvo = { version = "0.84.2", features = ["oapi", "logging", "cors"] }
 tokio = { version = "1.48.0", features = ["full"] }
 tracing = { version = "0.1.41", features = ["async-await"] }
 tracing-subscriber = { version = "0.3.20", features = ["env-filter", "chrono", "local-time"] }
