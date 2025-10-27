@@ -15,5 +15,5 @@ pub(crate) fn create_router() -> Router {
     ),
 )]
 async fn login() -> CommonResult<i64> {
-    CommonResult::success(1)
+    CommonResult::<i64>::error(2,"暂不支持登录")
 }

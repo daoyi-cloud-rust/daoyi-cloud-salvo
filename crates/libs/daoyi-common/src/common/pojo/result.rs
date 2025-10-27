@@ -40,7 +40,7 @@ impl<T> CommonResult<T> {
     }
 
     /// 创建错误结果
-    pub fn error(code: i32, msg: impl Into<String>) -> CommonResult<()> {
+    pub fn error(code: i32, msg: impl Into<String>) -> CommonResult<T> {
         CommonResult {
             code,
             data: None,
