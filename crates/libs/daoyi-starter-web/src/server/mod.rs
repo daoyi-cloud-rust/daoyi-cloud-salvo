@@ -1,5 +1,6 @@
-use crate::hoops::{cors, errors};
+use crate::hoops;
 use daoyi_common::common::conf;
+use salvo::catcher::Catcher;
 use salvo::conn::{Acceptor, TcpListener};
 use salvo::oapi::OpenApi;
 use salvo::prelude::*;
@@ -8,10 +9,7 @@ use salvo::{Listener, Router, Server};
 use tokio::signal;
 
 pub async fn start(router: Router) -> anyhow::Result<()> {
-    let router = Router::new()
-        .hoop(Logger::new())
-        .hoop(cors::cors_hoop())
-        .push(router);
+    let router = Router::new().hoop(Logger::new()).push(router);
     let c = conf::get().await;
     tracing::info!("log level: {}", c.server().log_level());
     let doc = OpenApi::new("Daoyi Cloud with Salvo web api", "0.0.1").merge_router(&router);
@@ -25,7 +23,9 @@ pub async fn start(router: Router) -> anyhow::Result<()> {
         tracing::info!("📖 Open API Page With Scaler {}/scalar", h);
         tracing::info!("📖 Open API Page With SwaggerUi {}/swagger", h);
     });
-    let service = Service::new(router);
+    let service = Service::new(router)
+        .catcher(Catcher::default().hoop(hoops::errors::handle_404))
+        .hoop(hoops::cors::cors_hoop());
     let server = Server::new(acceptor);
     tokio::spawn(shutdown_signal(server.handle()));
     server.serve(service).await;
