@@ -2,7 +2,8 @@ use crate::hoops;
 use daoyi_common::common::conf;
 use salvo::catcher::Catcher;
 use salvo::conn::{Acceptor, TcpListener};
-use salvo::oapi::OpenApi;
+use salvo::oapi::security::{ApiKey, ApiKeyValue};
+use salvo::oapi::{OpenApi, SecurityScheme};
 use salvo::prelude::*;
 use salvo::server::ServerHandle;
 use salvo::{Listener, Router, Server};
@@ -12,7 +13,16 @@ pub async fn start(router: Router) -> anyhow::Result<()> {
     let router = Router::new().hoop(Logger::new()).push(router);
     let c = conf::get().await;
     tracing::info!("log level: {}", c.server().log_level());
-    let doc = OpenApi::new("Daoyi Cloud with Salvo web api", "0.0.1").merge_router(&router);
+    let doc = OpenApi::new("Daoyi Cloud with Salvo web api", "0.0.1")
+        .add_security_scheme(
+            "bearer_auth",
+            SecurityScheme::ApiKey(ApiKey::Header(ApiKeyValue::new("Authorization"))),
+        )
+        .add_security_scheme(
+            "tenant_auth",
+            SecurityScheme::ApiKey(ApiKey::Header(ApiKeyValue::new("tenant-id"))),
+        )
+        .merge_router(&router);
     let router = router
         .unshift(doc.into_router("/api-doc/openapi.json"))
         .unshift(Scalar::new("/api-doc/openapi.json").into_router("scalar"))

@@ -1,5 +1,4 @@
 use salvo::Router;
-use crate::controller::{admin, app};
 
 pub(crate) mod auth;
 pub(crate) mod tenant;

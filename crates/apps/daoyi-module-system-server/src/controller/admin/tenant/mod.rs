@@ -13,6 +13,10 @@ pub(crate) fn create_router() -> Router {
     responses(
         (status_code = 200, description = "Success", body = CommonResult<String>),
     ),
+    security(
+        ("bearer_auth" = []),
+        ("tenant_auth" = []),
+    ),
 )]
 async fn get_tenant_id_by_name() -> CommonResult<String> {
     CommonResult::success(String::from("123"))
